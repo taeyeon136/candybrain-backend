@@ -5,11 +5,19 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 
-const app = express();
+const cors = require('cors');
+
+// Configure CORS
 app.use(cors({
   origin: ['http://localhost:8080', 'https://candybrain-frontend.onrender.com'],
+  methods: ['GET', 'POST', 'OPTIONS'], // Explicitly allow OPTIONS
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+// Handle preflight requests explicitly
+app.options('*', cors());
+
 app.use(express.json());
 const upload = multer({ dest: 'uploads/' });
 
