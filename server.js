@@ -6,7 +6,10 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:8080', 'https://candybrain-frontend.onrender.com'],
+  credentials: true
+}));
 app.use(express.json());
 const upload = multer({ dest: 'uploads/' });
 
